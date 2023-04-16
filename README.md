@@ -6,11 +6,11 @@ This is a small project I built in order to learn about and experiment with **ho
 
 ### Perspective Projection
 
-![perspective projection](result/perspective-projection.gif)
+<img src="result/perspective-projection.gif" alt="perspective projection" style="zoom:67%;" />
 
 ### Orthographic Projection
 
-![orthographic projection](result/orthographic-projection.gif)
+<img src="result/orthographic-projection.gif" alt="orthographic projection" style="zoom:67%;" />
 
 ## Basic Operations
 
@@ -24,9 +24,7 @@ s_x & 0 & 0 & 0 \\
 0 & 0 & s_z & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 x \\
 y \\
