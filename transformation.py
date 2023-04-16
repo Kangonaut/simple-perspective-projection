@@ -4,6 +4,21 @@ import math
 
 class Transformation:
     @staticmethod
+    def translation_matrix(position: np.ndarray) -> np.ndarray:
+        """
+        translate according to the given `position` vector
+
+        :param position: position vector
+        :return: the translation matrix
+        """
+        return np.array([
+            [1, 0, 0, position[0]],
+            [0, 1, 0, position[1]],
+            [0, 0, 1, position[2]],
+            [0, 0, 0, 1],
+        ])
+
+    @staticmethod
     def scale_matrix(scale: np.ndarray) -> np.ndarray:
         """
         scale according to the scale factors in the `scale` vector

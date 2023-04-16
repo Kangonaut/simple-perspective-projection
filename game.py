@@ -17,13 +17,17 @@ class GameManager:
         self.finished = False
         self.delta_time: float = 0
 
+        self.world_center: np.ndarray = np.array([
+            SCREEN_WIDTH / 2,
+            SCREEN_HEIGHT / 2,
+            0,
+            1,
+        ], dtype='float32')
+
         # define cube
         self.cube_expand: bool = False
         self.cube = Cube(
-            position=np.array([
-                int(SCREEN_WIDTH / 2),
-                int(SCREEN_HEIGHT / 2)
-            ], dtype='float32')
+            position=self.world_center,
         )
 
     def __handle_input(self) -> None:
@@ -46,10 +50,14 @@ class GameManager:
         self.cube.rotation[2] += angle  # rotate z
 
         # scale cube
-        scale_factor = math.sin(time.time()) + 2
-        self.cube.scale[0] = scale_factor
-        self.cube.scale[1] = scale_factor
-        self.cube.scale[2] = scale_factor
+        # scale_factor = math.sin(time.time()) + 2
+        # self.cube.scale[0] = scale_factor
+        # self.cube.scale[1] = scale_factor
+        # self.cube.scale[2] = scale_factor
+
+        # translate cube
+        translation = math.sin(time.time()) * 5
+        self.cube.position[0] = self.world_center[0] + translation
 
     def __draw(self) -> None:
         self.screen.fill(Colors.BLACK)

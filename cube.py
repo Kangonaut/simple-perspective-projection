@@ -32,7 +32,8 @@ class Cube:
         for point in self.points:
             point = Transformation.scale_matrix(self.scale).dot(point)  # scale
             point = Transformation.rotation_matrix(self.rotation).dot(point)  # rotate
-            final_point = self.position + point[:2]
+            point = Transformation.translation_matrix(self.position).dot(point)  # translate
+            final_point = point[:2]
 
             projected_point = final_point[:2]
 
