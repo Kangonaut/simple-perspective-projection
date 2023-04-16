@@ -192,7 +192,7 @@ $$
 - since the $y$-coordinate of the top of the projection window is 1, we can calculate the distance $z_{near}$ from the camera to the projection window as follows:
 
 $$
-tan(\frac{\alpha}{2}) = \frac{G}{A} = \frac{1}{z_{near}} \Rightarrow z_{near} = \frac{1}{tan(\frac{\alpha}{2})}
+tan(\frac{\alpha}{2}) = \frac{\text{opposite}}{\text{adjacent}} = \frac{1}{z_{near}} \Rightarrow z_{near} = \frac{1}{tan(\frac{\alpha}{2})}
 $$
 
 - putting everything together, we arrive at the following projection matrix:
