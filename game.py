@@ -84,6 +84,3 @@ class GameManager:
             self.__draw()
 
             self.clock.tick(self.TARGET_FPS)  # VSYNC
-
-            print()
-            print('==== NEW FRAME ====')
