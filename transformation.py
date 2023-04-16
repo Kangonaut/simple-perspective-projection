@@ -41,8 +41,8 @@ class Transformation:
         z_pos = position[2]
 
         return np.array([
-            [1 / aspect_ratio * z_near * 1 / z_pos, 0, 0, 0],
-            [0, z_near * 1 / z_pos, 0, 0],
+            [z_near / (aspect_ratio * z_pos), 0, 0, 0],
+            [0, z_near / z_pos, 0, 0],
             [0, 0, 1, 0],
             [0, 0, 0, 1],
         ])

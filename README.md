@@ -136,3 +136,91 @@ z \\
 \end{bmatrix}
 $$
 
+## Projection
+
+### Aspect Ratio
+
+- we want to project our points onto our **projection window**
+- the height and the width of the projection window should range from $[-1; +1]$, because this is easier to work with
+- for the $y$-axis, we can simply define that our projection window ranges from $-1$ to $+1$
+- doing the same for the $x$-axis would not work, since our screen is not necessarily square
+- thus we need to introduce an **aspect ratio** $ar = \frac{w}{h}$
+- for the $x$-axis, we now simple define that our projection window ranges from $-ar$ to $+ar$
+- by dividing the $x$-values by the aspect ratio, we get our desired range of $[-1; +1]$
+
+### Orthographic Projection
+
+- for orthographic projection, we simply ignore the $z$ component
+- this means that there is no depth perception
+- we simply need to account for the aspect ratio
+
+$$
+\mathbf{P_o} =
+\begin{bmatrix}
+\frac{1}{ar} & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+
+\cdot
+
+\begin{bmatrix}
+\mathbf{x} \\
+y \\
+z \\
+1 \\
+\end{bmatrix}
+$$
+
+### Perspective Projection
+
+- here we want to introduce **depth perception**, thus objects farther away should appear smaller
+- we first define a **field of view** $\alpha$ (see [Perspective Projection - OGL dev](https://ogldev.org/www/tutorial12/tutorial12.html) for a visualisation)
+- in order to get the projected $y$ component $y_p$, we can use the rule of similar triangles ($z_{near}$ is the distance from the camera to the projection window):
+
+$$
+\frac{y_p}{d} = \frac{y}{z} \Rightarrow y_p = \frac{y \cdot z_{near}}{z}
+$$
+
+- determining $x_p$ works exactly the same, but we have to account for the aspect ratio as well:
+
+$$
+x_p = \frac{x \cdot z_{near}}{z \cdot ar}
+$$
+
+- since the $y$-coordinate of the top of the projection window is 1, we can calculate the distance $z_{near}$ from the camera to the projection window as follows:
+
+$$
+tan(\frac{\alpha}{2}) = \frac{G}{A} = \frac{1}{z_{near}} \Rightarrow z_{near} = \frac{1}{tan(\frac{\alpha}{2})}
+$$
+
+- putting everything together, we arrive at the following projection matrix:
+
+$$
+\mathbf{P_o} =
+\begin{bmatrix}
+\frac{z_{near}}{z \cdot ar} & 0 & 0 & 0 \\
+0 & \frac{z_{near}}{z} & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+
+\cdot
+
+\begin{bmatrix}
+\mathbf{x} \\
+\mathbf{y} \\
+z \\
+1 \\
+\end{bmatrix}
+$$
+
+## Resources
+
+- [Perspective Projection - OGL dev](https://ogldev.org/www/tutorial12/tutorial12.html)
+- [Why do we use 4x4 Matrices in 3D Graphics? - pikuma](Why do we use 4x4 Matrices in 3D Graphics?)
+- [Translation using Shear Transformation - pikuma](https://youtu.be/Do_vEjd6gF0?t=845)
+- [Perspective Projection Matrix - pikuma](https://www.youtube.com/watch?v=EqNcqBdrNyI)
+- [3D Rendering with Rotation and Projection - The Coding Train](https://www.youtube.com/watch?v=p4Iz0XJY-Qk)
+
