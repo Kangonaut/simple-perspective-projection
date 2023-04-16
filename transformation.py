@@ -4,9 +4,25 @@ import math
 
 class Transformation:
     @staticmethod
+    def scale_matrix(scale: np.ndarray) -> np.ndarray:
+        """
+        scale according to the scale factors in the `scale` vector
+
+        :param scale: vector containing the scale factors
+        :return: the rotation matrix
+        """
+        return np.array([
+            [scale[0], 0, 0, 0],
+            [0, scale[1], 0, 0],
+            [0, 0, scale[2], 0],
+            [0, 0, 0, 1],
+        ])
+
+    @staticmethod
     def rotation_matrix(rotation: np.ndarray) -> np.ndarray:
         """
-        rotate according to the angles (rad) provided in the input `rotation` vector
+        rotate according to the angles (rad) provided in the `rotation` vector
+
         :param rotation: a vector containing the angles (rad) of rotation
         :return: the rotation matrix
         """
@@ -19,6 +35,7 @@ class Transformation:
     def z_rotation_matrix(angle: float) -> np.ndarray:
         """
         rotate around the z-axis
+
         :param angle: the angle (rad) of rotation
         :return: the rotation matrix
         """
@@ -33,6 +50,7 @@ class Transformation:
     def y_rotation_matrix(angle: float) -> np.ndarray:
         """
         rotate around the y-axis
+
         :param angle: the angle (rad) of rotation
         :return: the rotation matrix
         """
@@ -47,6 +65,7 @@ class Transformation:
     def x_rotation_matrix(angle: float) -> np.ndarray:
         """
         rotate around the x-axis
+
         :param angle: the angle (rad) of rotation
         :return: the rotation matrix
         """

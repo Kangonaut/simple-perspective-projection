@@ -9,6 +9,9 @@ class Cube:
     def __init__(self, position: np.ndarray, size: int = 50, color: Color = Colors.GREEN, point_radius: float = 5.0,
                  line_width: int = 1):
         self.position: np.ndarray = position
+        self.rotation: np.ndarray = np.array([0, 0, 0], dtype='float32')  # angle values for x, y and z
+        self.scale: np.ndarray = np.array([1, 1, 1], dtype='float32')
+
         self.points: np.ndarray = np.array([
             [-size, size, -size, 1],
             [size, size, -size, 1],
@@ -19,16 +22,17 @@ class Cube:
             [size, -size, size, 1],
             [-size, -size, size, 1],
         ], dtype='float32')
+
         self.color = color
         self.point_radius: float = point_radius
-        self.rotation: np.ndarray = np.array([0, 0, 0], dtype='float32')  # angle values for x, y and z
         self.line_width: int = line_width
 
     def draw(self, surface: pygame.Surface):
         projected_points = []
         for point in self.points:
-            rotated_point = Transformation.rotation_matrix(self.rotation).dot(point)
-            final_point = self.position + rotated_point[:2]
+            point = Transformation.scale_matrix(self.scale).dot(point)  # scale
+            point = Transformation.rotation_matrix(self.rotation).dot(point)  # rotate
+            final_point = self.position + point[:2]
 
             projected_point = final_point[:2]
 

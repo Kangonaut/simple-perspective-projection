@@ -1,7 +1,9 @@
+import math
 import pygame
 from color import Colors
 from cube import Cube
 import numpy as np
+import time
 
 
 class GameManager:
@@ -16,6 +18,7 @@ class GameManager:
         self.delta_time: float = 0
 
         # define cube
+        self.cube_expand: bool = False
         self.cube = Cube(
             position=np.array([
                 int(SCREEN_WIDTH / 2),
@@ -36,9 +39,17 @@ class GameManager:
                     self.finished = True
 
     def __update(self):
-        self.cube.rotation[0] += 0.01  # rotate x
-        # self.cube.rotation[1] += 0.01  # rotate y
-        self.cube.rotation[2] += 0.01  # rotate z
+        # rotate cube
+        angle = 0.3 * self.delta_time
+        self.cube.rotation[0] += angle  # rotate x
+        # self.cube.rotation[1] += angle  # rotate y
+        self.cube.rotation[2] += angle  # rotate z
+
+        # scale cube
+        scale_factor = math.sin(time.time()) + 2
+        self.cube.scale[0] = scale_factor
+        self.cube.scale[1] = scale_factor
+        self.cube.scale[2] = scale_factor
 
     def __draw(self) -> None:
         self.screen.fill(Colors.BLACK)
