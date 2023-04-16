@@ -217,7 +217,7 @@ $$
 ## Resources
 
 - [Perspective Projection - OGL dev](https://ogldev.org/www/tutorial12/tutorial12.html)
-- [Why do we use 4x4 Matrices in 3D Graphics? - pikuma](Why do we use 4x4 Matrices in 3D Graphics?)
+- [Why do we use 4x4 Matrices in 3D Graphics? - pikuma](https://www.youtube.com/watch?v=Do_vEjd6gF0)
 - [Translation using Shear Transformation - pikuma](https://youtu.be/Do_vEjd6gF0?t=845)
 - [Perspective Projection Matrix - pikuma](https://www.youtube.com/watch?v=EqNcqBdrNyI)
 - [3D Rendering with Rotation and Projection - The Coding Train](https://www.youtube.com/watch?v=p4Iz0XJY-Qk)
