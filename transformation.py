@@ -4,6 +4,50 @@ import math
 
 class Transformation:
     @staticmethod
+    def orthographic_projection_matrix(position: np.ndarray, aspect_ratio: float) -> np.ndarray:
+        """
+        perform orthographic projection
+
+        algorithm:
+         1. map values inside the projection window to range [-1; +1]
+         2. just ignore the z-axis
+
+        :param position: position vector
+        :param aspect_ratio: screen aspect ratio
+        :return: the projection matrix
+        """
+        return np.array([
+            [1 / aspect_ratio, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
+        ])
+
+    @staticmethod
+    def perspective_projection_matrix(position: np.ndarray, fov_angle: float, aspect_ratio: float) -> np.ndarray:
+        """
+        perform perspective projection
+
+        algorithm:
+         1. map values inside the projection window to range [-1; +1]
+         2. project point onto the projection window (distant points will appear further away)
+
+        :param position: position vector
+        :param fov_angle: field-of-view angle
+        :param aspect_ratio: screen aspect ratio
+        :return: the projection matrix
+        """
+        z_near = 1 / math.tan(fov_angle / 2)
+        z_pos = position[2]
+
+        return np.array([
+            [1 / aspect_ratio * z_near * 1 / z_pos, 0, 0, 0],
+            [0, z_near * 1 / z_pos, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1],
+        ])
+
+    @staticmethod
     def translation_matrix(position: np.ndarray) -> np.ndarray:
         """
         translate according to the given `position` vector

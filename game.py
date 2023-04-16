@@ -10,16 +10,16 @@ class GameManager:
 
     def __init__(self) -> None:
         pygame.init()
-        self.SCREEN_DIM = (SCREEN_WIDTH, SCREEN_HEIGHT) = (1125, 786)
+        self.SCREEN_DIM = (self.SCREEN_WIDTH, self.SCREEN_HEIGHT) = (1125, 786)
         self.TARGET_FPS = 60
-        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
         self.clock = pygame.time.Clock()
         self.finished = False
         self.delta_time: float = 0
 
         self.world_center: np.ndarray = np.array([
-            SCREEN_WIDTH / 2,
-            SCREEN_HEIGHT / 2,
+            0,  # self.SCREEN_WIDTH / 2,
+            0,  # self.SCREEN_HEIGHT / 2,
             0,
             1,
         ], dtype='float32')
@@ -27,7 +27,12 @@ class GameManager:
         # define cube
         self.cube_expand: bool = False
         self.cube = Cube(
-            position=self.world_center,
+            position=np.array([
+                0,
+                0,
+                5,  # z-axis displacement
+                1,
+            ], dtype='float32'),
         )
 
     def __handle_input(self) -> None:
@@ -46,24 +51,27 @@ class GameManager:
         # rotate cube
         angle = 0.3 * self.delta_time
         self.cube.rotation[0] += angle  # rotate x
-        # self.cube.rotation[1] += angle  # rotate y
-        self.cube.rotation[2] += angle  # rotate z
+        self.cube.rotation[1] += angle  # rotate y
+        # self.cube.rotation[2] += angle  # rotate z
 
         # scale cube
-        # scale_factor = math.sin(time.time()) + 2
-        # self.cube.scale[0] = scale_factor
-        # self.cube.scale[1] = scale_factor
-        # self.cube.scale[2] = scale_factor
+        scale_factor = (math.sin(time.time()) + 2)
+        self.cube.scale[0] = scale_factor
+        self.cube.scale[1] = scale_factor
+        self.cube.scale[2] = scale_factor
 
         # translate cube
-        translation = math.sin(time.time()) * 5
-        self.cube.position[0] = self.world_center[0] + translation
+        translation = math.sin(time.time())
+        # self.cube.position[0] = self.world_center[0] + translation
+        # self.cube.position[1] = self.world_center[1] + translation
 
     def __draw(self) -> None:
         self.screen.fill(Colors.BLACK)
 
         # draw cube
-        self.cube.draw(self.screen)
+        fov_angle = math.pi / 2
+        aspect_ratio = self.SCREEN_WIDTH / self.SCREEN_HEIGHT
+        self.cube.draw(self.screen, fov_angle, self.SCREEN_WIDTH, self.SCREEN_HEIGHT)
 
         pygame.display.flip()
 
