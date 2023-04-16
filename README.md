@@ -1,5 +1,17 @@
 # Simple Perspective Projection
 
+This is a small project I built in order to learn about and experiment with **homogeneous coordinates**, **transformation matrices** and **perspective projection**.
+
+## End Result
+
+### Perspective Projection
+
+![perspective projection](/home/jakob/data/coding-adventures/simple-perspective-projection/result/perspective-projection.gif)
+
+### Orthographic Projection
+
+![orthographic projection](result/orthographic-projection.gif)
+
 ## Basic Operations
 
 ### Scaling
