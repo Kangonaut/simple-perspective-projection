@@ -6,7 +6,7 @@ This is a small project I built in order to learn about and experiment with **ho
 
 ### Perspective Projection
 
-![perspective projection](/home/jakob/data/coding-adventures/simple-perspective-projection/result/perspective-projection.gif)
+![perspective projection](result/perspective-projection.gif)
 
 ### Orthographic Projection
 
@@ -68,9 +68,7 @@ $$
 0 & sin(\theta) & cos(\theta) & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 x \\
 \mathbf{y} \\
@@ -89,9 +87,7 @@ cos(\theta) & 0 & -sin(\theta) & 0 \\
 sin(\theta) & 0 & cos(\theta) & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 \mathbf{x} \\
 y \\
@@ -112,9 +108,7 @@ sin(\theta) & cos(\theta) & 0 & 0 \\
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 \mathbf{x} \\
 \mathbf{y} \\
@@ -137,9 +131,7 @@ $$
 0 & 0 & 1 & t_z \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 x \\
 y \\
@@ -174,9 +166,7 @@ $$
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 \mathbf{x} \\
 y \\
@@ -217,9 +207,7 @@ $$
 0 & 0 & 1 & 0 \\
 0 & 0 & 0 & 1 \\
 \end{bmatrix}
-
 \cdot
-
 \begin{bmatrix}
 \mathbf{x} \\
 \mathbf{y} \\
